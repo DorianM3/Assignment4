@@ -4,11 +4,13 @@ boolean checkWalkRight;
 boolean checkWalkLeft;
 int playerFullSpeed;
 Player player;
+Sphere sphere; 
 
 void setup(){
   size(600,500);
   background(255); 
   player = new Player(width/2, height/2); 
+  sphere = new Sphere(random(50, 550), 0);
 }
 
 void draw(){
@@ -20,6 +22,9 @@ void draw(){
   //Makes the bottom of the screen- the ground, a grassy green color
   fill(19,109,21);
   rect(0, 300, 600, 500); 
+  
+  sphere.Update(); 
+  sphere.Display(); 
   
   //Uses framecount to swap between the animations and create a smooth running animation
   if(frameCount % 10 == 0){
