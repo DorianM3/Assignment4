@@ -9,7 +9,7 @@ Sphere sphere;
 void setup(){
   size(600,500);
   background(255); 
-  player = new Player(width/2, height/2); 
+  player = new Player(width/2, height/1.25); 
   sphere = new Sphere(random(50, 550), 0);
 }
 
@@ -35,6 +35,11 @@ void draw(){
   //Calls update and display to have the player character appear on screen
   player.Update(checkWalkLeft, checkWalkRight); 
   player.Display(playerRunFrame, checkWalkLeft, checkWalkRight, playerFullSpeed); 
+  
+  if((player.position.x + 37 >= sphere.position.x && player.position.x < sphere.position.x) && (sphere.position.y > 380 && sphere.position.y < 420)) { 
+   println("hey!!");  
+    }
+  
 }
 
 void keyPressed(){

@@ -8,7 +8,7 @@ class Player {
   PImage checkLastDirection;
     
     //Constructor that takes in the x and y that the player will start at
-    Player(int x, int y){
+    Player(int x, float y){
     //Where the player starts
     position = new PVector(x,y);  
     
@@ -43,19 +43,19 @@ class Player {
   
   //Displays the player character running right or left, and full speed variations in case the player is running long enough to activate it 
   void Display(int playerRunFrame, boolean checkWalkLeft, boolean checkWalkRight, int playerFullSpeed){
-     if(checkWalkRight == true && playerFullSpeed < 50){
+     if(checkWalkRight == true && playerFullSpeed < 30){
     image(playerRunRight[playerRunFrame], position.x, height/1.25);
     }
   
-  else if(checkWalkRight == true && playerFullSpeed > 50){
+  else if(checkWalkRight == true && playerFullSpeed > 30){
     image(playerRunRight[1], position.x, height/1.25); 
     }
   
-  else if(checkWalkLeft == true && playerFullSpeed < 50){
+  else if(checkWalkLeft == true && playerFullSpeed < 30){
     image(playerRunLeft[playerRunFrame], position.x, height/1.25);
     }
   
-  else if(checkWalkLeft == true && playerFullSpeed > 50){
+  else if(checkWalkLeft == true && playerFullSpeed > 30){
     image(playerRunLeft[1], position.x, height/1.25); 
     }
   
