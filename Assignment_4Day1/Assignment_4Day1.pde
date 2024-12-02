@@ -4,13 +4,19 @@ boolean checkWalkRight;
 boolean checkWalkLeft;
 int playerFullSpeed;
 Player player;
-Sphere sphere; 
+Sphere[] spheres = new Sphere[2]; 
 
 void setup(){
-  size(600,500);
-  background(255); 
+  //chooses the size of the screen
+  size(600,500); 
+  //sets up the player object, placing them near the middle of the screen and close to the bottom
   player = new Player(width/2, height/1.25); 
-  sphere = new Sphere(random(50, 550), 0);
+  
+  //sets up the sphere object as an array to make the game more difficult, with two balls randomly coming down from different x coordinates 
+  for(int i = 0; i < spheres.length; i++){
+    //no limitations are put on the random so spheres can summon anywhere on the map, including on top of themselves. This is so players won't feel comfortable finding a part of the map where only one ball can spawn, increasing likelyhood of game overing eventually
+    spheres[i] = new Sphere(random(5, 495), 0);
+  }
 }
 
 void draw(){
@@ -23,10 +29,13 @@ void draw(){
   fill(19,109,21);
   rect(0, 300, 600, 500); 
   
-  sphere.Update(); 
-  sphere.Display(); 
+  //Calls for the spheres to update their speed and position, then display that change 
+  for(int i = 0; i <spheres.length; i++){
+  spheres[i].Update(); 
+  spheres[i].Display(); 
+  }
   
-  //Uses framecount to swap between the animations and create a smooth running animation
+  //Uses framecount to swap between the frames and create a smooth running animation
   if(frameCount % 10 == 0){
     playerRunFrame += 1;
     playerRunFrame = playerRunFrame % 2; 
@@ -36,15 +45,18 @@ void draw(){
   player.Update(checkWalkLeft, checkWalkRight); 
   player.Display(playerRunFrame, checkWalkLeft, checkWalkRight, playerFullSpeed); 
   
-  if((player.position.x + 37 >= sphere.position.x && player.position.x < sphere.position.x) && (sphere.position.y > 380 && sphere.position.y < 420)) { 
-   println("hey!!");  
+  //Uses detection for the player and the ball, game overing once you get hit 
+  for(int i = 0; i < spheres.length; i++){
+    //The numbers are choses based on the way the system checks players position vs what they visually are standing on. I.e the player is 25 pixels visually to the right of where the game registers them as, hence we check 37 instead of 12 (circumfrance of the sphere)
+    if((player.position.x + 37 >= spheres[i].position.x && player.position.x < spheres[i].position.x) && (spheres[i].position.y > 380 && spheres[i].position.y < 420)) { 
+     println("hey!!");  
+       }
+    //Resets the sphere once they hit the bottom of the map
+    if(spheres[i].position.y > 500){
+      spheres[i].position.x = random(50, 550);
+      spheres[i].position.y = 0;
     }
-   
-  if(sphere.position.y > 500){
-    sphere.position.x = random(50, 550);
-    sphere.position.y = 0;
   }
-  
 }
 
 void keyPressed(){
