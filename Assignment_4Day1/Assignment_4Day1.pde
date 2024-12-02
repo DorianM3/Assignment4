@@ -27,11 +27,33 @@ void draw(){
     //Makes the top of the screen a sky
     fill(135, 206, 235);
     rect(0, 0, 600, 300);
-  
-  
+    
     //Makes the bottom of the screen- the ground, a grassy green color
     fill(19,109,21);
-    rect(0, 300, 600, 500); 
+    rect(0, 200, 600, 500); 
+    
+    //creates a small walkway for the player to walk on
+    fill(219, 186, 143);
+    rect(0, 350, 600, 100 );
+    
+    //Creates the sun to add a bit more to the visual component 
+    noStroke();
+    fill(255,255,51);
+    ellipse(0, 0, 100, 100);
+    triangle(60, 10, 60, 30, 70, 20);
+    triangle(10, 60, 30, 60, 20, 70);
+    
+    //Creates the trunk of the tree
+    fill(139,69,19);
+    rect(200, 120, 20, 80);
+    rect(400, 120, 20, 80); 
+    
+    fill(19,109,21);
+    ellipse(210, 100, 50, 70);
+    ellipse(410, 100, 50, 70);
+    
+    
+    
   
     //Calls for the spheres to update their speed and position, then display that change 
     for(int i = 0; i <spheres.length; i++){
@@ -52,7 +74,7 @@ void draw(){
   //Uses detection for the player and the ball, game overing once you get hit 
     for(int i = 0; i < spheres.length; i++){
       //The numbers are choses based on the way the system checks players position vs what they visually are standing on. I.e the player is 25 pixels visually to the right of where the game registers them as, hence we check 37 instead of 12 (circumfrance of the sphere)
-      if((player.position.x + 37 >= spheres[i].position.x && player.position.x < spheres[i].position.x) && (spheres[i].position.y > 390 && spheres[i].position.y < 420)) { 
+      if((player.position.x + 37 >= spheres[i].position.x && player.position.x - 5 < spheres[i].position.x) && (spheres[i].position.y > 400 && spheres[i].position.y < 440)) { 
          gameOver = true;
        }
     }
