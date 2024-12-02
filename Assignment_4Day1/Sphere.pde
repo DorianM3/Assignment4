@@ -12,29 +12,28 @@ class Sphere{
   }
   
   void Update(){
-    //Updates the speed 
+    //Updates the speed of the x and y values
     position.x += builtSpeedX; 
     position.y += builtSpeedY;
-    //Lets the builtspeed cap out at 8
     
+    //These next 4 if statements are for if the spheres touch the sides of the screen in any way, reversing the direction they're going at while still upping the speed
     if(position.y > 485){
-      //Everytime it falls and isn't at 8 the speed of the spheres will incread to ensure a loss condition is eventually met 
-      builtSpeedY += 0.2; 
+      builtSpeedY += 0.1; 
       builtSpeedY = builtSpeedY * -1;
     }
     
     else if(position.y < 15){
-      builtSpeedY -= 0.2;
+      builtSpeedY -= 0.1;
       builtSpeedY = builtSpeedY * -1; 
     }
     
     if(position.x > 585){
-      builtSpeedX += 0.2; 
+      builtSpeedX += 0.1; 
       builtSpeedX = builtSpeedX * -1;
     }
     
     else if(position.x < 15){
-      builtSpeedX -= 0.2;
+      builtSpeedX -= 0.1;
       builtSpeedX = builtSpeedX * -1; 
     }
   }
