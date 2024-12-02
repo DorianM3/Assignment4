@@ -1,21 +1,41 @@
 class Sphere{
   //sets up the vector and float we will be using for the falling speed of the spheres
   PVector position;
-  float builtSpeed;
+  float builtSpeedX;
+  float builtSpeedY;
   
-  Sphere(float x, int y){
+  Sphere(float x, float y){
    //Position takes in a starting point from the main class
    position = new PVector(x, y); 
-   builtSpeed = 0; 
+   builtSpeedX = 2;
+   builtSpeedY = 2; 
   }
   
   void Update(){
     //Updates the speed 
-    position.y += (2 + builtSpeed);
+    position.x += builtSpeedX; 
+    position.y += builtSpeedY;
     //Lets the builtspeed cap out at 8
-    if(position.y > 500 && builtSpeed < 7.9){
+    
+    if(position.y > 485){
       //Everytime it falls and isn't at 8 the speed of the spheres will incread to ensure a loss condition is eventually met 
-      builtSpeed += 0.2; 
+      builtSpeedY += 0.2; 
+      builtSpeedY = builtSpeedY * -1;
+    }
+    
+    else if(position.y < 15){
+      builtSpeedY -= 0.2;
+      builtSpeedY = builtSpeedY * -1; 
+    }
+    
+    if(position.x > 585){
+      builtSpeedX += 0.2; 
+      builtSpeedX = builtSpeedX * -1;
+    }
+    
+    else if(position.x < 15){
+      builtSpeedX -= 0.2;
+      builtSpeedX = builtSpeedX * -1; 
     }
   }
   

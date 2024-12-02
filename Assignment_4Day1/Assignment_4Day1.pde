@@ -3,6 +3,8 @@ int playerRunFrame = 1;
 boolean checkWalkRight; 
 boolean checkWalkLeft;
 int playerFullSpeed;
+int reverseSpeed = 1;
+int reverseHeight = 1; 
 Player player;
 Sphere[] spheres = new Sphere[2]; 
 
@@ -15,7 +17,7 @@ void setup(){
   //sets up the sphere object as an array to make the game more difficult, with two balls randomly coming down from different x coordinates 
   for(int i = 0; i < spheres.length; i++){
     //no limitations are put on the random so spheres can summon anywhere on the map, including on top of themselves. This is so players won't feel comfortable finding a part of the map where only one ball can spawn, increasing likelyhood of game overing eventually
-    spheres[i] = new Sphere(random(5, 495), 0);
+    spheres[i] = new Sphere(random(5, 495), random(20, 300));
   }
 }
 
@@ -51,11 +53,6 @@ void draw(){
     if((player.position.x + 37 >= spheres[i].position.x && player.position.x < spheres[i].position.x) && (spheres[i].position.y > 380 && spheres[i].position.y < 420)) { 
      println("hey!!");  
        }
-    //Resets the sphere once they hit the bottom of the map
-    if(spheres[i].position.y > 500){
-      spheres[i].position.x = random(50, 550);
-      spheres[i].position.y = 0;
-    }
   }
 }
 
