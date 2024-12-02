@@ -1,16 +1,20 @@
 class Player {
-  //Sets up the position vector and all of the sprites used for the player
-  PVector position;
+  //Sets up the position, velocity, and acceleration vector and all of the sprites used for the player
+  PVector position; 
+  PVector velocity; 
+  PVector acceleration;
   PImage playerRight;
   PImage playerLeft;
   PImage playerRunRight[];
   PImage playerRunLeft[];
   PImage checkLastDirection;
     
-    //Constructor that takes in the x and y that the player will start at
-    Player(int x, float y){
+    //Constructor that takes in the x and y that the player will start at and the velocity + acceleration they will be going at
+    Player(float x, float y, float vx, float vy, float ax, float ay){
     //Where the player starts
     position = new PVector(x,y);  
+    velocity = new PVector(vx,vy); 
+    acceleration = new PVector(ax,ay);
     
     //Creates the left and right variations of all character animations
     playerRight = loadImage("chickenstandright.png");
@@ -30,12 +34,21 @@ class Player {
   //Updates to see if the player is walking left or right 
   void Update(boolean checkWalkLeft, boolean checkWalkRight){
     if(checkWalkLeft == true){
-      position.x -= 2;
+      //position is effected by velocity
+      position.x -= velocity.x; 
+      //if they hit top speed then the player accelerates to top speed
+      if(playerFullSpeed > 30){
+        position.x -= acceleration.x;
+      }
       checkLastDirection = playerLeft;
     }
     
+    //mimiced of the above but for moving right 
     else if (checkWalkRight == true){
-      position.x += 2; 
+      position.x += velocity.x; 
+      if(playerFullSpeed > 30){
+        position.x += acceleration.x; 
+      }
       checkLastDirection = playerRight; 
     }
     
@@ -62,7 +75,7 @@ class Player {
   //If the player is not moving, puts them in the idle facing the direction they were running in using checkLastDirection which stores it. 
   else{
     image(checkLastDirection, position.x, height/1.25);
-    }
+   }
   }
   
 }

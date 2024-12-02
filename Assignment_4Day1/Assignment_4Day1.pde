@@ -12,7 +12,7 @@ void setup(){
   //chooses the size of the screen
   size(600,500); 
   //sets up the player object, placing them near the middle of the screen and close to the bottom
-  player = new Player(width/2, height/1.25); 
+  player = new Player(width/2, height/1.25, 2, 2, 2, 2); 
   
   //sets up the sphere object as an array to make the game more difficult, with two balls randomly coming down from different x coordinates 
   for(int i = 0; i < spheres.length; i++){
