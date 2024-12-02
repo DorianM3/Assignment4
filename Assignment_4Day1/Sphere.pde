@@ -8,7 +8,7 @@ class Sphere{
    //Position takes in a starting point from the main class
    position = new PVector(x, y); 
    builtSpeedX = 2;
-   builtSpeedY = 2; 
+   builtSpeedY = 2;
   }
   
   void Update(){
@@ -24,12 +24,12 @@ class Sphere{
     
     else if(position.y < 15){
       builtSpeedY -= 0.1;
-      builtSpeedY = builtSpeedY * -1; 
+      builtSpeedY = builtSpeedY * -1;  
     }
     
     if(position.x > 585){
       builtSpeedX += 0.1; 
-      builtSpeedX = builtSpeedX * -1;
+      builtSpeedX = builtSpeedX * -1; 
     }
     
     else if(position.x < 15){

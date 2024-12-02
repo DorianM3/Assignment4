@@ -33,6 +33,15 @@ class Player {
   
   //Updates to see if the player is walking left or right 
   void Update(boolean checkWalkLeft, boolean checkWalkRight){
+    //Constrains the places where the player can move and keeps them from exiting the screen
+    if(position.x < 0){
+      position.x = 0;
+    }
+    
+    else if(position.x > 555){
+      position.x = 555;
+    }
+    
     if(checkWalkLeft == true){
       //position is effected by velocity
       position.x -= velocity.x; 
