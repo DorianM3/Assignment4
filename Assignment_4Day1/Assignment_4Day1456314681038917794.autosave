@@ -39,11 +39,6 @@ void draw(){
   if((player.position.x + 37 >= sphere.position.x && player.position.x < sphere.position.x) && (sphere.position.y > 380 && sphere.position.y < 420)) { 
    println("hey!!");  
     }
-   
-  if(sphere.position.y > 500){
-    sphere.position.x = random(50, 550);
-    sphere.position.y = 0;
-  }
   
 }
 

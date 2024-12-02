@@ -1,12 +1,17 @@
 class Sphere{
-  PVector position; 
+  PVector position;
+  float builtSpeed;
   
   Sphere(float x, int y){
     position = new PVector(x, y); 
+   builtSpeed = 0; 
   }
   
   void Update(){
-    position.y += 2;
+    position.y += (2 + builtSpeed);
+    if(position.y > 500 && builtSpeed < 10.00){
+      builtSpeed += 0.2; 
+    }
   }
   
   void Display(){
